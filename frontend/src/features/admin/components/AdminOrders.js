@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ITEMS_PER_PAGE, discountedPrice } from '../../../app/constants';
+import { ITEMS_PER_PAGE } from '../../../app/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchAllOrdersAsync,
@@ -14,6 +14,7 @@ import {
   ArrowDownIcon,
 } from '@heroicons/react/24/outline';
 import Pagination from '../../common/Pagination';
+
 function AdminOrders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
@@ -173,16 +174,20 @@ function AdminOrders() {
                       {order.items.map((item, index) => (
                         <div key={index} className="flex items-center">
                           <div className="mr-2">
+                          {item.product && item.product.thumbnail && (
                             <img
                               className="w-6 h-6 rounded-full"
                               src={item.product.thumbnail}
                               alt={item.product.title}
                             />
+                          )}
                           </div>
+                          {item.product && (
                           <span>
                             {item.product.title} - #{item.quantity} - $
-                            {discountedPrice(item.product)}
+                            {item.product.discountPrice}
                           </span>
+                          )}
                         </div>
                       ))}
                     </td>
