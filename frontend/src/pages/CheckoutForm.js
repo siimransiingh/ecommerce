@@ -61,7 +61,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://ecommerce-green-chi.vercel.app/order-success/my-orders`,
+        return_url: `https://ecommerce-green-chi.vercel.app/my-orders`,
       },
     });
 
